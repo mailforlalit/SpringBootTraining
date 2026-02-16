@@ -1,6 +1,7 @@
 package com.sbt.learning.controller;
 
 import com.sbt.learning.dto.ProductDTO;
+import jakarta.validation.Valid;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.MethodNotAllowedException;
@@ -21,8 +22,8 @@ public class ProductControllerV2 {
     }
 
     @PostMapping("/products")
-    public String addProducts(@RequestBody List<ProductDTO> products) {
-        productList.addAll(products);
+    public String addProduct(@Valid @RequestBody ProductDTO product) {
+        productList.add(product);
         return "products added successfully";
     }
     @PostMapping("/products/{id}")
